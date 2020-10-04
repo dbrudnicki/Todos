@@ -1,6 +1,9 @@
 import { v4 } from "uuid";
 import { ApolloError } from "apollo-server";
 
+/**
+ * TodoType represents the structure of a Todo.
+ */
 interface TodoType {
   id: string;
   title?: string;
