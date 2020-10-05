@@ -1,7 +1,14 @@
-import * as React from "react";
-import { render } from "react-dom";
-import { App } from "./app";
+import * as React from 'react'
+import { render } from 'react-dom'
+import { ApolloProvider } from '@apollo/client'
+import { client } from './client'
+import { App } from './app'
 
-import "./style.scss";
+import './style.scss'
 
-render(<App />, document.getElementById("root"));
+render(
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>,
+  document.getElementById('root')
+)
