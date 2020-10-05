@@ -1,10 +1,7 @@
 import React from 'react'
-import { gql, useQuery } from '@apollo/client'
+import { GET_TODOS } from './graphql'
+import { useQuery } from '@apollo/client'
 import { ListGroup, ListGroupItem, Alert } from 'reactstrap'
-
-interface Props {
-  message?: string
-}
 
 interface TodoType {
   id: string
@@ -12,20 +9,8 @@ interface TodoType {
   completed: boolean
 }
 
-//#region GraphQL Stuff
-const GET_TODOS = gql`
-  query {
-    todos {
-      id
-      title
-      completed
-    }
-  }
-`
-//#endregion
-
 // The App Component
-export const App = ({ message = "I'm empty" }: Props) => {
+export const App = () => {
   const { loading, error, data } = useQuery(GET_TODOS)
 
   if (error) {
