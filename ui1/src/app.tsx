@@ -56,10 +56,8 @@ export const App = (): JSX.Element => {
       cache.modify({
         fields: {
           todos(existingRefs, { readField }) {
-            const result = existingRefs.filter((r: any) => removeTodo !== readField('id', r))
-
+            const result = existingRefs.filter((r: any) => removeTodo.id !== readField('id', r))
             cache.evict({ id: cache.identify(removeTodo) })
-
             return result
           }
         }
