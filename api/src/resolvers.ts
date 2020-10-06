@@ -19,7 +19,7 @@ let todos: Array<TodoType> = []
  * @param id
  */
 const findTodo = (id: string): TodoType => {
-  let todo: TodoType | undefined = todos.find((t: TodoType) => t.id === id)
+  const todo: TodoType | undefined = todos.find((t: TodoType) => t.id === id)
 
   if (todo === undefined) {
     throw new ApolloError(`Todo with id: ${id}, not found.`, '404')
@@ -30,10 +30,10 @@ const findTodo = (id: string): TodoType => {
 
 export default {
   Query: {
-    todos: () => todos
+    todos: (): Array<TodoType> => todos
   },
   Mutation: {
-    addTodo(node: TodoType, { title }: { title: string }) {
+    addTodo(node: TodoType, { title }: { title: string }): TodoType {
       const todo: TodoType = {
         id: v4(),
         title,
@@ -44,13 +44,13 @@ export default {
 
       return todo
     },
-    removeTodo(node: TodoType, { id }: { id: string }) {
+    removeTodo(node: TodoType, { id }: { id: string }): TodoType {
       const todo: TodoType = findTodo(id)
       todos = todos.filter((t: TodoType) => t.id !== id)
       return todo
     },
-    updateTodo(node: TodoType, { params: { id, completed } }: { params: TodoType }) {
-      let todo: TodoType = findTodo(id)
+    updateTodo(node: TodoType, { params: { id, completed } }: { params: TodoType }): TodoType {
+      const todo: TodoType = findTodo(id)
 
       todo.completed = completed
 
