@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { GET_TODOS, ADD_TODO, UPDATE_TODO, REMOVE_TODO } from './graphql'
 import { ApolloError, useQuery, useMutation } from '@apollo/client'
 import { Input, ListGroup, ListGroupItem, Alert } from 'reactstrap'
-import { settings } from 'cluster'
 
 interface TodoType {
   id: string
@@ -16,7 +15,7 @@ const handleError = (error: ApolloError) => {
 }
 
 // The App Component
-export const App = () => {
+export const App = (): JSX.Element => {
   // Set the state of the Todo input item
   const [todoItem, setTodoItem] = useState('')
 
