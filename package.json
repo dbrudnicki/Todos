@@ -9,7 +9,7 @@
   "scripts": {
     "api:start": "nodemon --exec babel-node --extensions '.ts' api/src/server.ts",
     "ui1:start": "parcel serve --port=4321 ui1/public/index.html",
-    "ui2:start": "parcel serve --port=4321 ui2/public/index.html"
+    "ui2:start": "parcel serve --port=4322 ui2/public/index.html"
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
