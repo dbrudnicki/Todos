@@ -29,10 +29,10 @@ export const App = (): JSX.Element => {
       return <Alert color="danger">An error occurred; check the console for details.</Alert>
     },
     update(cache, { data: { addTodo } }) {
-      const data: any = cache.readQuery({ query: GET_TODOS })
+      const { todos }: { todos: Array<TodoType> } = cache.readQuery({ query: GET_TODOS })
       cache.writeQuery({
         query: GET_TODOS,
-        data: { todos: [...data.todos, addTodo] }
+        data: { todos: [...todos, addTodo] }
       })
     },
     onCompleted() {
