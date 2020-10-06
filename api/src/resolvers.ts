@@ -1,16 +1,16 @@
-import { v4 } from "uuid";
-import { ApolloError } from "apollo-server";
+import { v4 } from 'uuid'
+import { ApolloError } from 'apollo-server'
 
 /**
  * TodoType represents the structure of a Todo.
  */
 interface TodoType {
-  id: string;
-  title?: string;
-  completed?: boolean;
+  id: string
+  title?: string
+  completed?: boolean
 }
 
-let todos: Array<TodoType> = [];
+let todos: Array<TodoType> = []
 
 /**
  * This function is used to find a Todo based on
@@ -19,46 +19,42 @@ let todos: Array<TodoType> = [];
  * @param id
  */
 const findTodo = (id: string): TodoType => {
-  let todo: TodoType | undefined = todos.find((t: TodoType) => t.id === id);
+  let todo: TodoType | undefined = todos.find((t: TodoType) => t.id === id)
 
   if (todo === undefined) {
-    throw new ApolloError(`Todo with id: ${id}, not found.`, "404");
+    throw new ApolloError(`Todo with id: ${id}, not found.`, '404')
   }
 
-  return todo;
-};
+  return todo
+}
 
 export default {
   Query: {
-    todos: () => todos,
+    todos: () => todos
   },
   Mutation: {
     addTodo(node: TodoType, { title }: { title: string }) {
       const todo: TodoType = {
         id: v4(),
         title,
-        completed: false,
-      };
+        completed: false
+      }
 
-      todos.push(todo);
+      todos.push(todo)
 
-      return todo;
+      return todo
     },
     removeTodo(node: TodoType, { id }: { id: string }) {
-      const todo: TodoType = findTodo(id);
-      todos = todos.filter((t: TodoType) => t.id !== id);
-      return todo;
+      const todo: TodoType = findTodo(id)
+      todos = todos.filter((t: TodoType) => t.id !== id)
+      return todo
     },
-    updateTodo(
-      node: TodoType,
-      { params: { id, title, completed } }: { params: TodoType }
-    ) {
-      let todo: TodoType = findTodo(id);
+    updateTodo(node: TodoType, { params: { id, completed } }: { params: TodoType }) {
+      let todo: TodoType = findTodo(id)
 
-      if (title) todo.title = title;
-      if (completed) todo.completed = completed;
+      todo.completed = completed
 
-      return todo;
-    },
-  },
-};
+      return todo
+    }
+  }
+}

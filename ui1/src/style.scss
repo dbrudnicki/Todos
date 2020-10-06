@@ -15,4 +15,25 @@ body {
   .form-control:focus {
     box-shadow: none;
   }
+
+  .list-group-item {
+    &:hover {
+      cursor: pointer;
+    }
+
+    .trash {
+      position: absolute;
+      right: 1rem;
+      font-weight: bold;
+      color: $danger;
+      z-index: 100;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .completed {
+    text-decoration: line-through;
+  }
 }

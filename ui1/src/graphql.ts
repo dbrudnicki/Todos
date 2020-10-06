@@ -23,8 +23,8 @@ export const ADD_TODO = gql`
 `
 
 export const UPDATE_TODO = gql`
-  mutation UpdateTodo($id: ID!, $title: String, $completed: Boolean) {
-    updateTodo(params: { id: $id, title: $title, completed: $completed }) {
+  mutation UpdateTodo($id: ID!, $completed: Boolean) {
+    updateTodo(params: { id: $id, completed: $completed }) {
       ${fragment}
     }
   }
