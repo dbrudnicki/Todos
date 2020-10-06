@@ -1,4 +1,4 @@
-@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
 body {
   display: flex;
@@ -8,6 +8,11 @@ body {
 }
 .App {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  width: 30vw;
+  width: 20vw;
+
+  .form-control:focus {
+    box-shadow: none;
+  }
 }
